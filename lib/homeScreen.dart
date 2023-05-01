@@ -13,6 +13,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final largy = MediaQuery.of(context).size.height;
+    final largx = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF4CAF50),
@@ -54,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.of(context).pushNamed('/tela${seq + 1}');
                                   },
                                   child: Container(
-                                    width: 160,
+                                    width: largx < 711 ? 160 : 300,
                                     padding: EdgeInsets.all(20),
                                     margin: EdgeInsets.only(left: 15),
                                     decoration: BoxDecoration(
