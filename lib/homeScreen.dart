@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:tourismos/views/telaPortoVelho.dart';
 
@@ -14,28 +12,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final largy = MediaQuery.of(context).size.height;
     final largx = MediaQuery.of(context).size.width;
+    final largy = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: AppBar(
         backgroundColor: Color(0xFF4CAF50),
         title: Text('Tourismos RO'),
-        actions: [
-          PopupMenuButton(
-              tooltip: 'Menu',
-              onSelected: (String value) {
-                Navigator.of(context).pushNamed('/$value');
-              }, itemBuilder: (BuildContext) {
-            return [
-              PopupMenuItem(value: 'tela1', child: Text('Porto-Velho-RO')),
-              PopupMenuItem(value: 'tela2', child: Text('Ariquemes-RO')),
-              PopupMenuItem(value: 'tela3', child: Text('Ouro Preto-RO')),
-              PopupMenuItem(value: 'tela4', child: Text('Vilhena-RO')),
-            ];
-          })
-        ],
-      ),
+        ),),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 30),
@@ -46,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Expanded(
                         child: Container(
-                          height: 200, // POSSÍVEL IMPLEMENTAÇÃO DO MEDIA QUERY #########################
+                          height: largy < 300 ? 150 : 120,
                           child: ListView.builder(
                               itemCount: 4,
                               scrollDirection: Axis.horizontal,
@@ -58,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.of(context).pushNamed('/tela${seq + 1}');
                                   },
                                   child: Container(
-                                    width: largx < 711 ? 160 : 300,
+                                    width: largx < 711 ? 160 : 204,
                                     padding: EdgeInsets.all(20),
                                     margin: EdgeInsets.only(left: 15),
                                     decoration: BoxDecoration(
@@ -108,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Navigator.of(context).pushNamed('/tela${seq + 1}');
                               },
                               child: Container(
-                                height: 200,  // POSSÍVEL IMPLEMENTAÇÃO DO MEDIA QUERY #########################
+                                width: largx < 711 ? 600 : 1000,
+                                height: largx < 711 ? 200 : 400,  // POSSÍVEL IMPLEMENTAÇÃO DO MEDIA QUERY #########################
                                 decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(15),
@@ -123,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(top: 10, right: 5),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     (nomes[seq]),
@@ -132,21 +119,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: 20,
-                                      ),
-                                      Text(
-                                        "4,6",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  )
                                 ],
                               ),
                             ),
